@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dynamic Form (No React)</title>
+</head>
+<body>
+  <!-- Rendered via Web Component with no React -->
+  <dynamic-form
+    id="agentForm"
+    fields='[
+      {"id":"name","label":"Name","type":"text","required":true},
+      {"id":"email","label":"Email","type":"email","required":true}
+    ]'
+    action="/submit-form"
+    method="POST"
+    json="true"
+    btn-label="Submit"
+  ></dynamic-form>
+
+  <script type="module" src="./dynamic-form-component.js"></script>
+  <script>
+    const el = document.getElementById('agentForm');
+    el?.addEventListener('form-submitted', (e) => console.log('submitted', e.detail));
+    el?.addEventListener('form-success', (e) => console.log('success', e.detail));
+    el?.addEventListener('form-error', (e) => console.log('error', e.detail));
+  </script>
+</body>
+</html>
