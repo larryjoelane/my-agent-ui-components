@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Form</title>
+</head>
+<body>
+    <h1>Dynamic JSON Form</h1>
+    <form id="jsonForm">
+        <label for="jsonData">Enter JSON Data:</label><br>
+        <textarea id="jsonData" name="jsonData" rows="10" cols="30"></textarea><br>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="output"></div>
+
+    <script>
+        document.getElementById('jsonForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const jsonData = document.getElementById('jsonData').value;
+            try {
+                const parsedData = JSON.parse(jsonData);
+                document.getElementById('output').innerText = JSON.stringify(parsedData, null, 2);
+            } catch (error) {
+                document.getElementById('output').innerText = 'Invalid JSON: ' + error.message;
+            }
+        });
+    </script>
+</body>
+</html>
